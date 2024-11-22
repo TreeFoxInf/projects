@@ -9,21 +9,23 @@ controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
     Ham.vy = -130
 })
 sprites.onOverlap(SpriteKind.Goal2, SpriteKind.ball, function (sprite, otherSprite) {
+    info.player2.changeLifeBy(-1)
+    pause(1000)
     mySprite2.vx = 50
     mySprite2.setPosition(80, 60)
-    info.player2.changeLifeBy(-1)
 })
 sprites.onOverlap(SpriteKind.playerOne, SpriteKind.ball, function (sprite, otherSprite) {
-    speed += 3
-    mySprite2.vx = 50 + speed
+    speed += 1
+    mySprite2.vx = 25 + speed
 })
 sprites.onOverlap(SpriteKind.Goal, SpriteKind.ball, function (sprite, otherSprite) {
+    info.player1.changeLifeBy(-1)
+    pause(1000)
     mySprite2.vx = 50
     mySprite2.setPosition(80, 60)
-    info.player1.changeLifeBy(-1)
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
-    Ham.vy = -130
+    mySprite3.vy = -130
 })
 function map () {
     tiles.setCurrentTilemap(tilemap`level5`)
@@ -76,12 +78,12 @@ controller.player2.onEvent(ControllerEvent.Connected, function () {
         . . . . . . e e e e . . . . . . 
         `, SpriteKind.playerTwo)
     mySprite3.ay = 200
-    controller.player1.moveSprite(Ham, 100, 0)
+    controller.player2.moveSprite(mySprite3, 100, 0)
     mySprite3.setPosition(150, 2)
     info.player2.setLife(5)
 })
 sprites.onOverlap(SpriteKind.playerTwo, SpriteKind.ball, function (sprite, otherSprite) {
-    speed += 3
+    speed += 1
     mySprite2.vx = -50 + speed
 })
 controller.player1.onEvent(ControllerEvent.Connected, function () {
