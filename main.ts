@@ -9,20 +9,23 @@ controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
     Ham.vy = -130
 })
 sprites.onOverlap(SpriteKind.Goal2, SpriteKind.ball, function (sprite, otherSprite) {
+    mySprite2.startEffect(effects.warmRadial, 1000)
     info.player2.changeLifeBy(-1)
-    pause(1000)
-    mySprite2.vx = 50
     mySprite2.setPosition(80, 60)
+    mySprite2.vx = 25
+    mySprite2.vy = 25
 })
 sprites.onOverlap(SpriteKind.playerOne, SpriteKind.ball, function (sprite, otherSprite) {
+    mySprite2.startEffect(effects.fire, 300)
     speed += 1
     mySprite2.vx = 25 + speed
 })
 sprites.onOverlap(SpriteKind.Goal, SpriteKind.ball, function (sprite, otherSprite) {
+    mySprite2.startEffect(effects.warmRadial, 1000)
     info.player1.changeLifeBy(-1)
-    pause(1000)
-    mySprite2.vx = 50
     mySprite2.setPosition(80, 60)
+    mySprite2.vx = 25
+    mySprite2.vy = 25
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     mySprite3.vy = -130
@@ -81,8 +84,10 @@ controller.player2.onEvent(ControllerEvent.Connected, function () {
     controller.player2.moveSprite(mySprite3, 100, 0)
     mySprite3.setPosition(150, 2)
     info.player2.setLife(5)
+    mySprite3.setStayInScreen(true)
 })
 sprites.onOverlap(SpriteKind.playerTwo, SpriteKind.ball, function (sprite, otherSprite) {
+    mySprite2.startEffect(effects.fire, 350)
     speed += 1
     mySprite2.vx = -50 + speed
 })
@@ -109,6 +114,7 @@ controller.player1.onEvent(ControllerEvent.Connected, function () {
     controller.player1.moveSprite(Ham, 100, 0)
     Ham.setPosition(10, 7)
     info.player1.setLife(5)
+    Ham.setStayInScreen(true)
 })
 let mySprite3: Sprite = null
 let Ham: Sprite = null
@@ -368,7 +374,7 @@ mySprite2 = sprites.create(img`
     1 1 1 1 
     1 1 1 1 
     `, SpriteKind.ball)
-mySprite2.vx = 50
-mySprite2.vy = 50
+mySprite2.vx = 25
+mySprite2.vy = 25
 mySprite2.setBounceOnWall(true)
 mySprite2.setStayInScreen(true)
